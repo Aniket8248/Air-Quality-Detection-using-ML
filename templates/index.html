@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        h2 {
+            color: #00796b;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #predictionForm {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            border: 2px solid #00796b;
+        }
+        #predictionForm label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        #predictionForm input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        #predictionForm input:focus {
+            border-color: #00796b;
+            outline: none;
+        }
+        #predictionForm button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #predictionForm button:hover {
+            background-color: #004d40;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Air Quality Prediction</h2>
+        <form id="predictionForm" method="post" action="/predict">
+            <label>CO_GT: <input type="number" step="0.01" name="CO_GT" required></label>
+            <label>PT08_S1_CO: <input type="number" step="0.01" name="PT08_S1_CO" required></label>
+            <label>C6H6_GT: <input type="number" step="0.01" name="C6H6_GT" required></label>
+            <label>PT08_S2_NMHC: <input type="number" step="0.01" name="PT08_S2_NMHC" required></label>
+            <label>NOx_GT: <input type="number" step="0.01" name="NOx_GT" required></label>
+            <label>PT08_S3_NOx: <input type="number" step="0.01" name="PT08_S3_NOx" required></label>
+            <label>NO2_GT: <input type="number" step="0.01" name="NO2_GT" required></label>
+            <label>PT08_S4_NO2: <input type="number" step="0.01" name="PT08_S4_NO2" required></label>
+            <label>PT08_S5_O3: <input type="number" step="0.01" name="PT08_S5_O3" required></label>
+            <label>T: <input type="number" step="0.01" name="T" required></label>
+            <label>RH: <input type="number" step="0.01" name="RH" required></label>
+            <label>AH: <input type="number" step="0.01" name="AH" required></label>
+            <button type="submit">Predict Air Quality</button>
+        </form>
+        <h3 id="result">{{ prediction_text }}</h3>
+    </div>
+</body>
+</html>
